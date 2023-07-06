@@ -60,7 +60,7 @@ public class Main {
         System.out.println("--------------------------------------------------------------------");
         
         // Utilizando polimorfismo para chamar métodos específicos de ContaCorrente e ContaPoupanca
-        for (Cliente cliente : agencia1.getClientes()) {
+        for (Cliente cliente : agencia2.getClientes()) {
             System.out.println("Cliente: " + cliente.getNome());
             for (ContaBancaria conta : cliente.getContas()) {
                 System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo());
