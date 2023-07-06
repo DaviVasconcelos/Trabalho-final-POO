@@ -2,14 +2,14 @@ package banco;
 
 public class Main {
     public static void main(String[] args) {
-        // Código do sistema de banco MyBank
+    	// Criação dos objetos
         Banco banco = new Banco("MyBank");
 
         Agencia agencia1 = new Agencia("001");
         Agencia agencia2 = new Agencia("002");
 
         Cliente cliente1 = new Cliente("Jodosvildo");
-        Cliente cliente2 = new Cliente("Cleberson");
+        Cliente cliente2 = new Cliente("Cleberildo");
 
         ContaCorrente contaCorrente1 = new ContaCorrente("12345", 1000, 500);
         ContaPoupanca contaPoupanca1 = new ContaPoupanca("67890", 5000, 0.05);
@@ -29,39 +29,31 @@ public class Main {
         banco.adicionarAgencia(agencia1);
         banco.adicionarAgencia(agencia2);
 
-        // Execução das classes e seus métodos cliente 1
+        // Exemplo de utilização dos métodos das classes
+
+        // Obtendo o nome do banco
         System.out.println("Nome do banco: " + banco.getNome());
 
+        // Listando os clientes de uma agência
         System.out.println("Clientes da agência " + agencia1.getNumeroAgencia() + ":");
         for (Cliente cliente : agencia1.getClientes()) {
             System.out.println(cliente.getNome());
         }
 
+        // Obtendo o saldo de uma conta corrente
         System.out.println("Saldo da conta corrente do cliente " + cliente1.getNome() + ": " +
                 contaCorrente1.getSaldo());
 
+        // Depositar em uma conta corrente
         contaCorrente1.depositar(500);
-        contaCorrente1.sacar(200);
 
-        System.out.println("Saldo atualizado da conta corrente do cliente " + cliente1.getNome() + ": " +
-                contaCorrente1.getSaldo());
-        
-        
-        // Execução das classes e seus métodos cliente 2
-        System.out.println("Nome do banco: " + banco.getNome());
+        // Sacar de uma conta poupança
+        contaPoupanca1.sacar(200);
 
-        System.out.println("Clientes da agência " + agencia2.getNumeroAgencia() + ":");
-        for (Cliente cliente : agencia2.getClientes()) {
-            System.out.println(cliente.getNome());
+        // Obtendo a lista de contas de um cliente
+        System.out.println("Contas do cliente " + cliente1.getNome() + ":");
+        for (ContaBancaria conta : cliente1.getContas()) {
+            System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo());
         }
-
-        System.out.println("Saldo da conta corrente do cliente " + cliente2.getNome() + ": " +
-                contaCorrente2.getSaldo());
-
-        contaCorrente2.depositar(500);
-        contaCorrente2.sacar(200);
-
-        System.out.println("Saldo atualizado da conta corrente do cliente " + cliente2.getNome() + ": " +
-                contaCorrente2.getSaldo());
     }
 }
