@@ -85,21 +85,18 @@ public class Main {
      // Separação
         System.out.println("--------------------------------------------------------------------");
         
-     // Utilizando polimorfismo para chamar métodos específicos de Pessoa Física e Pessoa Jurídica
-        for (Cliente cliente : agencia1.getClientes()) {
-            System.out.println("Cliente: " + cliente.getNome());
-            for (ContaBancaria conta : cliente.getContas()) {
-                System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo());
+     // Utilizando métodos específicos de PessoaJuridica
+        System.out.println("Informações da pessoa jurídica " + pessoaJuridica1.getNome() + ":");
+        System.out.println("CNPJ: " + ((PessoaJuridica) pessoaJuridica1).getCnpj());
+        System.out.println("Nome da empresa: " + ((PessoaJuridica) pessoaJuridica1).getNome());
 
-                if (cliente instanceof PessoaFisica) {
-                    PessoaFisica pessoaFisica = (PessoaFisica) cliente;
-                    System.out.println("CPF: " + pessoaFisica.getCPF());
-                } else if (cliente instanceof PessoaJuridica) {
-                    PessoaJuridica pessoaJuridica = (PessoaJuridica) cliente;
-                    System.out.println("CNPJ: " + pessoaJuridica.getCnpj());
-                }
-            }
-            System.out.println();
+        // Adicionando uma nova conta à pessoa jurídica
+        ((PessoaJuridica) pessoaJuridica1).adicionarConta(contaPoupanca1);
+
+        // Listando as contas da pessoa jurídica
+        System.out.println("Contas da pessoa jurídica " + pessoaJuridica1.getNome() + ":");
+        for (ContaBancaria conta : pessoaJuridica1.getContas()) {
+            System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo());
         }
     }
 }
