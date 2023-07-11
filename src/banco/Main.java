@@ -8,8 +8,11 @@ public class Main {
         Agencia agencia1 = new Agencia("001");
         Agencia agencia2 = new Agencia("002");
 
-        Cliente cliente1 = new Cliente("Jodosvildo");
-        Cliente cliente2 = new Cliente("Cleberildo");
+        Cliente PessoaFisica1 = new PessoaFisica("Jodosvildo", "12345678900");
+        Cliente PessoaFisica2 = new PessoaFisica("Cleberildo", "00987654321");
+        
+        Cliente pessoaJuridica1 = new PessoaJuridica("Jodoslandia", "123456789");
+        Cliente pessoaJuridica2 = new PessoaJuridica("Cleberondes", "987654321");
 
         ContaCorrente contaCorrente1 = new ContaCorrente("12345", 1000, 500);
         ContaPoupanca contaPoupanca1 = new ContaPoupanca("67890", 5000, 0.05);
@@ -17,14 +20,17 @@ public class Main {
         ContaCorrente contaCorrente2 = new ContaCorrente("54321", 2000, 1000);
         ContaPoupanca contaPoupanca2 = new ContaPoupanca("09876", 8000, 0.03);
 
-        cliente1.adicionarConta(contaCorrente1);
-        cliente1.adicionarConta(contaPoupanca1);
+        PessoaFisica1.adicionarConta(contaCorrente1);
+        PessoaFisica1.adicionarConta(contaPoupanca1);
 
-        cliente2.adicionarConta(contaCorrente2);
-        cliente2.adicionarConta(contaPoupanca2);
+        PessoaFisica2.adicionarConta(contaCorrente2);
+        PessoaFisica2.adicionarConta(contaPoupanca2);
+        
+        pessoaJuridica1.adicionarConta(contaCorrente1);
+        pessoaJuridica2.adicionarConta(contaPoupanca2);
 
-        agencia1.adicionarCliente(cliente1);
-        agencia2.adicionarCliente(cliente2);
+        agencia1.adicionarCliente(PessoaFisica1);
+        agencia2.adicionarCliente(PessoaFisica2);
 
         banco.adicionarAgencia(agencia1);
         banco.adicionarAgencia(agencia2);
@@ -41,7 +47,7 @@ public class Main {
         }
 
         // Obtendo o saldo de uma conta corrente
-        System.out.println("Saldo da conta corrente do cliente " + cliente1.getNome() + ": " +
+        System.out.println("Saldo da conta corrente do cliente " + PessoaFisica1.getNome() + ": " +
                 contaCorrente1.getSaldo());
 
         // Depositar em uma conta corrente
@@ -51,8 +57,8 @@ public class Main {
         contaPoupanca1.sacar(200);
 
         // Obtendo a lista de contas de um cliente
-        System.out.println("Contas do cliente " + cliente1.getNome() + ":");
-        for (ContaBancaria conta : cliente1.getContas()) {
+        System.out.println("Contas do cliente " + PessoaFisica1.getNome() + ":");
+        for (ContaBancaria conta : PessoaFisica1.getContas()) {
             System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo());
         }
         
@@ -71,6 +77,26 @@ public class Main {
                 } else if (conta instanceof ContaPoupanca) {
                     ContaPoupanca contaPoupanca = (ContaPoupanca) conta;
                     System.out.println("Taxa de rendimento: " + contaPoupanca.getTaxaRendimento());
+                }
+            }
+            System.out.println();
+        }
+        
+     // Separação
+        System.out.println("--------------------------------------------------------------------");
+        
+     // Utilizando polimorfismo para chamar métodos específicos de Pessoa Física e Pessoa Jurídica
+        for (Cliente cliente : agencia1.getClientes()) {
+            System.out.println("Cliente: " + cliente.getNome());
+            for (ContaBancaria conta : cliente.getContas()) {
+                System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo());
+
+                if (cliente instanceof PessoaFisica) {
+                    PessoaFisica pessoaFisica = (PessoaFisica) cliente;
+                    System.out.println("CPF: " + pessoaFisica.getCPF());
+                } else if (cliente instanceof PessoaJuridica) {
+                    PessoaJuridica pessoaJuridica = (PessoaJuridica) cliente;
+                    System.out.println("CNPJ: " + pessoaJuridica.getCnpj());
                 }
             }
             System.out.println();
