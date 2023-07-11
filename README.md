@@ -36,3 +36,10 @@ Passo 2: Com o arquivo baixado, extraia o ZIP com o WinRar
 ![image](https://github.com/DaviVasconcelos/Trabalho-final-POO/assets/89715003/8df12d52-e775-46cf-a9f9-60002d5afbc2)
 
 Passo 3: Abra a pasta pelo Eclipse, ou qualquer outra IDE que suporte Java, e execute e Main.java.
+
+# Diagrama de Classes UML:
+![image](https://github.com/DaviVasconcelos/Trabalho-final-POO/assets/89715003/c84b7dc7-e17a-4486-a903-eb3a5be4d457)
+
+PDF do diagrama:
+[export.pdf](https://github.com/DaviVasconcelos/Trabalho-final-POO/files/12021388/export.pdf)
+
